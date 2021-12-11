@@ -1,11 +1,18 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet, Image} from 'react-native';
+import {PropTypes} from 'prop-types';
+
+const propTypes = {
+  item: PropTypes.object,
+};
 class Card extends React.PureComponent {
   render() {
-    const {item} = this.props;
+    const {navigation, item} = this.props;
 
     return (
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Detail', {movieId: item.id})}
+        style={styles.container}>
         <Image
           resizeMode="cover"
           style={styles.image}
@@ -26,5 +33,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
 });
+Card.propTypes = propTypes;
 
 export default Card;

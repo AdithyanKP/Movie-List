@@ -1,17 +1,19 @@
+import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {View} from 'react-native';
 import Home from './screens/Home';
+import Detail from './screens/Detail';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+const Stack = createNativeStackNavigator();
 const App = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-      <Home></Home>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Detail" component={Detail} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
