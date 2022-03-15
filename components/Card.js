@@ -2,6 +2,7 @@ import React from 'react';
 import {TouchableOpacity, StyleSheet, Image} from 'react-native';
 import {PropTypes} from 'prop-types';
 
+//proptypes handling//
 const propTypes = {
   item: PropTypes.object,
 };

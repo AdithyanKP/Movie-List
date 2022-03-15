@@ -9,15 +9,19 @@ import {
   View,
   Text,
   Modal,
-  Pressable,
 } from 'react-native';
+
 import {getMovies} from '../services/services';
 import dateFormat from 'dateformat';
 import PlayButton from '../components/PlayButton';
 import VideoPlayer from 'react-native-video-controls';
+
 const height = Dimensions.get('screen').height;
+
 const Detail = ({route, navigation}) => {
+  //Getting The id of the selected movies//
   const movieId = route.params.movieId;
+
   const [movieData, setMovieData] = useState('');
   const [loaded, setLoaded] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -29,6 +33,7 @@ const Detail = ({route, navigation}) => {
     });
   });
 
+  //video playing handling function//
   const videoVisibleHandler = () => {
     setModalVisible(!modalVisible);
   };
@@ -92,6 +97,7 @@ const Detail = ({route, navigation}) => {
     </React.Fragment>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

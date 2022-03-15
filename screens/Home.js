@@ -1,23 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import {
-  Text,
   View,
   StyleSheet,
   Dimensions,
   ScrollView,
   ActivityIndicator,
 } from 'react-native';
+
 import {
   getMoviesPopular,
   getUpcomingMovies,
   getPopularTv,
   getFamilyMovies,
 } from '../services/services';
+
 import {SliderBox} from 'react-native-image-slider-box';
 import List from '../components/List';
 import Error from '../components/Error';
 
 const dimensions = Dimensions.get('screen');
+
 const Home = ({navigation}) => {
   const [moviesImages, setMoviesImages] = useState();
   const [popularMovies, setPopularmovies] = useState();
@@ -25,6 +27,8 @@ const Home = ({navigation}) => {
   const [familyMovies, setFamilyMovies] = useState();
   const [error, setError] = useState(false);
   const [loaded, setLoaded] = useState(false);
+
+  //data fetching//
   const getData = () => {
     return Promise.all([
       getUpcomingMovies(),
@@ -33,6 +37,7 @@ const Home = ({navigation}) => {
       getFamilyMovies(),
     ]);
   };
+
   useEffect(() => {
     getData()
       .then(
@@ -63,7 +68,7 @@ const Home = ({navigation}) => {
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       {loaded && !error && (
         <ScrollView>
           {moviesImages && (
@@ -102,7 +107,7 @@ const Home = ({navigation}) => {
       )}
       {!loaded && <ActivityIndicator size="large" />}
       {error && <Error />}
-    </React.Fragment>
+    </>
   );
 };
 const styles = StyleSheet.create({
